@@ -198,28 +198,13 @@
             const noBtn = document.querySelector('.no-btn');
             const yesBtn = document.querySelector('.yes-btn');
             
-            const responses = [
-                "Are you sure? 🥺",
-                "Please reconsider? 💝",
-                "The 'Yes' button is looking pretty good... 👀",
-                "I'll be really sad... 😢",
-                "Last chance! 💔"
-            ];
-
-            if (noClickCount < responses.length) {
-                alert(responses[noClickCount - 1]);
-                
-                // Make Yes button bigger each time
-                const currentSize = 1 + (noClickCount * 0.2);
-                yesBtn.style.transform = `scale(${currentSize})`;
-                
-                // Make No button smaller
-                const noSize = 1 - (noClickCount * 0.15);
-                noBtn.style.transform = `scale(${Math.max(noSize, 0.4)})`;
-            } else {
-                // After 5 clicks, just say yes anyway!
-                sayYes();
-            }
+            // Make Yes button bigger each time
+            const currentSize = 1 + (noClickCount * 0.3);
+            yesBtn.style.transform = `scale(${currentSize})`;
+            
+            // Make No button smaller
+            const noSize = 1 - (noClickCount * 0.15);
+            noBtn.style.transform = `scale(${Math.max(noSize, 0.3)})`;
         }
 
         function createConfetti() {
