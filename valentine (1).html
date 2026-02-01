@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #ffc3a0 0%, #ffafbd 100%);
+            background: #ff69b4;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -66,22 +66,24 @@
         }
 
         .yes-btn {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
+            background: white;
+            color: #ff1493;
         }
 
         .yes-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+            background: #fff5f8;
         }
 
         .no-btn {
-            background: white;
-            color: #ff6b9d;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 2px solid white;
         }
 
         .no-btn:hover {
-            background: #f0f0f0;
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .response {
@@ -198,45 +200,31 @@
             const noBtn = document.querySelector('.no-btn');
             const yesBtn = document.querySelector('.yes-btn');
             
-            const responses = [
-                "Are you sure? 🥺",
-                "Please reconsider? 💝",
-                "The 'Yes' button is looking pretty good... 👀",
-                "I'll be really sad... 😢",
-                "Last chance! 💔"
-            ];
-
-            if (noClickCount < responses.length) {
-                alert(responses[noClickCount - 1]);
-                
-                // Make Yes button bigger each time
-                const currentSize = 1 + (noClickCount * 0.2);
-                yesBtn.style.transform = `scale(${currentSize})`;
-                
-                // Make No button smaller
-                const noSize = 1 - (noClickCount * 0.15);
-                noBtn.style.transform = `scale(${Math.max(noSize, 0.4)})`;
-            } else {
-                // After 5 clicks, just say yes anyway!
-                sayYes();
-            }
+            // Make Yes button bigger each time
+            const currentSize = 1 + (noClickCount * 0.3);
+            yesBtn.style.transform = `scale(${currentSize})`;
+            
+            // Make No button smaller
+            const noSize = 1 - (noClickCount * 0.15);
+            noBtn.style.transform = `scale(${Math.max(noSize, 0.3)})`;
         }
 
         function createConfetti() {
             const celebration = document.getElementById('celebration');
-            const colors = ['#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ffd700', '#ff69b4'];
+            const colors = ['#ffffff', '#ffe4e1', '#ffd700', '#ffb6c1', '#ff1493', '#00f2fe'];
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 150; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + '%';
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
                     confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
                     celebration.appendChild(confetti);
                     
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 50);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
             }
         }
     </script>
